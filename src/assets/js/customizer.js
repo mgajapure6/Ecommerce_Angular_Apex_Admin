@@ -47,9 +47,17 @@ $(document).ready( function(){
         var $this = $(this),
         src = $this.attr('src');
 
+        
         $('.sidebar-background').css('background-image', 'url(' + src + ')');
         $this.closest('.cz-bg-image').find('.selected').removeClass('selected');
         $this.addClass('selected');
+
+        if($('.cz-bg-image-display').prop('checked')===true){
+            $('.sidebar-background').css('display','block');
+        }
+        else{
+            $('.sidebar-background').css('display','none');
+        }
     });
 
     $('.cz-bg-image-display').on('click',function(){
