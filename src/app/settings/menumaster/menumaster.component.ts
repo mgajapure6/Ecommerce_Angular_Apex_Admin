@@ -1,5 +1,7 @@
 import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
+import { Routes, Router } from '@angular/router';
 import swal from 'sweetalert2';
+import { Route } from '@angular/compiler/src/core';
 
 declare var require: any;
 const data: any = require('../../shared/data/company.json');
@@ -10,7 +12,7 @@ const data: any = require('../../shared/data/company.json');
     styleUrls: ['./menumaster.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-export class MenuMasterComponent implements OnInit{
+export class MenuMasterComponent implements OnInit {
     rows = [];
     loadingIndicator: boolean = true;
     reorderable: boolean = true;
@@ -24,24 +26,24 @@ export class MenuMasterComponent implements OnInit{
 
     closeResult: string;
 
-    constructor() {
+    constructor(private dashboardRouter: Router) {
         this.rows = data;
         setTimeout(() => { this.loadingIndicator = false; }, 1500);
     }
 
-    ngOnInit(){
+    ngOnInit() {
         $("#formDiv").hide();
         $("#tableDiv").show();
     }
 
-    
-    addNewBtnAction(){
-        if($(".addNewBtn").html()=='<i class="fa fa-caret-left"></i>&nbsp; Go Back'){
+
+    addNewBtnAction() {
+        if ($(".addNewBtn").html() == '<i class="fa fa-caret-left"></i>&nbsp; Go Back') {
             $("#formDiv").hide();
             $("#tableDiv").show(1000);
             $(".addNewBtn").removeClass('btn-success').addClass('btn-primary');
             $(".addNewBtn").html('Add New &nbsp;<i class="fa fa-plus"></i>')
-        }else{
+        } else {
             //this.clearFormBtnAction();
             $("#formDiv").show(1000);
             $("#tableDiv").hide();
@@ -50,16 +52,40 @@ export class MenuMasterComponent implements OnInit{
         }
     }
 
-    closePageBtnAction(){
+    closePageBtnAction() {
 
+        if ($('.wrapper').hasClass('nav-collapsed')) {
+            $('.navigation').find('li').each(function () {
+                $(this).removeClass('nav-collapsed-open');
+                $(this).find('ul').find('li').each(function () {
+                    $(this).removeClass('is-shown');
+                    $(this).removeClass('active');
+                });
+            });
+            $('.navigation').find('li:eq(0)').addClass('nav-collapsed-open');
+        } else {
+            $('.navigation').find('li').each(function () {
+                $(this).removeClass('open');
+                $(this).find('ul').find('li').each(function () {
+                    $(this).removeClass('is-shown');
+                    $(this).removeClass('active');
+                });
+            });
+            $('.navigation').find('li:eq(0)').addClass('open');
+        }
+        $('.navigation').find('li:eq(0)').find('ul').find('li:eq(0)').addClass('active').addClass('is-shown');
+        $('.navigation').find('li:eq(0)').find('ul').find('li').each(function () {
+            $(this).addClass('is-shown');
+        });
+        this.dashboardRouter.navigateByUrl("/dashboard/dashboard1");
     }
 
 
-    clearFormBtnAction(){
+    clearFormBtnAction() {
         alert("cleared...");
     }
 
-    saveFormBtnAction(){
+    saveFormBtnAction() {
         swal({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -80,7 +106,7 @@ export class MenuMasterComponent implements OnInit{
         }).catch(swal.noop);
     }
 
-    closeFromBtnAction(){
+    closeFromBtnAction() {
 
     }
 }
