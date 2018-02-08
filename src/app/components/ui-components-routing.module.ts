@@ -41,7 +41,6 @@ const routes: Routes = [
           title: 'Buttons'
         }
       },      
-      
       {
         path: 'lists',
         component: ListsComponent,
@@ -231,7 +230,6 @@ const routes: Routes = [
           title: 'Ngb-Bootstrap'
         }
       },    
-
     ]
   }
 ];
