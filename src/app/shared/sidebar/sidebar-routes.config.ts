@@ -11,9 +11,15 @@ export const ROUTES: RouteInfo[] = [
     },
     {
         path: '', title: 'Settings', icon: 'ft-settings', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false, submenu: [
+<<<<<<< HEAD
             { path: '/settings/menuMaster', title: 'Menu Master', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/settings/moduleMaster', title: 'Module Master', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/settings/userMaster', title: 'User Master', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+=======
+            { path: '/settings/usermaster', title: 'User Master', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/settings/modulemaster', title: 'Module Master', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/settings/menumaster', title: 'Menu Master', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+>>>>>>> d8394940404daeb38ecc559fe27a05f992cd8758
         ]
     },
     { path: '/colorpalettes', title: 'Color Palette', icon: 'ft-droplet', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },

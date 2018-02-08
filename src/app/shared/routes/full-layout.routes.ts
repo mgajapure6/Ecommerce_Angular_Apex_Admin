@@ -9,7 +9,11 @@ export const Full_ROUTES: Routes = [
   },
   {
     path: 'settings',
+<<<<<<< HEAD
     loadChildren: './settings/settings.module#SettingModule'
+=======
+    loadChildren: './settings/settings.module#SettingsModule'
+>>>>>>> d8394940404daeb38ecc559fe27a05f992cd8758
   },
   {
     path: 'calendar',
