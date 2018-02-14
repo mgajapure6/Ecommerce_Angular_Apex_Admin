@@ -14,6 +14,7 @@ export const ROUTES: RouteInfo[] = [
             { path: '/settings/usermaster', title: 'User Master', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/settings/modulemaster', title: 'Module Master', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
             { path: '/settings/menumaster', title: 'Menu Master', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+            { path: '/settings/userRightsMaster', title: 'User Rights Master', icon: '', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
         ]
     },
     { path: '/colorpalettes', title: 'Color Palette', icon: 'ft-droplet', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },

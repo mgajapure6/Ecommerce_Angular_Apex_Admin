@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
 import { Routes, Router } from '@angular/router';
-import swal from 'sweetalert2';
+import * as alertFunctions from './../../shared/data/sweet-alerts';
 import { Route } from '@angular/compiler/src/core';
 
 declare var require: any;
@@ -86,24 +86,25 @@ export class MenuMasterComponent implements OnInit {
     }
 
     saveFormBtnAction() {
-        swal({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#0CC27E',
-            cancelButtonColor: '#FF586B',
-            confirmButtonText: 'Text Changed',
-            cancelButtonText: "No, cancel"
-        }).then(function (isConfirm) {
-            if (isConfirm) {
-                swal(
-                    'Changed!',
-                    'Confirm button text was changed!!',
-                    'success'
-                );
-            }
-        }).catch(swal.noop);
+        // swal({
+        //     title: 'Are you sure?',
+        //     text: "You won't be able to revert this!",
+        //     type: 'warning',
+        //     showCancelButton: true,
+        //     confirmButtonColor: '#0CC27E',
+        //     cancelButtonColor: '#FF586B',
+        //     confirmButtonText: 'Text Changed',
+        //     cancelButtonText: "No, cancel"
+        // }).then(function (isConfirm) {
+        //     if (isConfirm) {
+        //         swal(
+        //             'Changed!',
+        //             'Confirm button text was changed!!',
+        //             'success'
+        //         );
+        //     }
+        // }).catch(swal.noop);
+        alertFunctions.confirmCancelButton();
     }
 
     closeFromBtnAction() {

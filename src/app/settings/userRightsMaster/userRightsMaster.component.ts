@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input, OnInit  } from '@angular/core';
+import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
 import { Routes, Router } from '@angular/router';
 import * as alertFunctions from './../../shared/data/sweet-alerts';
 import { Route } from '@angular/compiler/src/core';
@@ -7,12 +7,12 @@ declare var require: any;
 const data: any = require('../../shared/data/company.json');
 
 @Component({
-    selector: 'app-modulemaster',
-    templateUrl: './modulemaster.component.html',
-    styleUrls: ['./modulemaster.component.scss'],
+    selector: 'app-userRightsMaster',
+    templateUrl: './userRightsMaster.component.html',
+    styleUrls: ['./userRightsMaster.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-export class ModuleMasterComponent implements OnInit{
+export class UserRightsMasterComponent implements OnInit  {
     rows = [];
     loadingIndicator: boolean = true;
     reorderable: boolean = true;
@@ -35,6 +35,7 @@ export class ModuleMasterComponent implements OnInit{
         $("#formDiv").hide();
         $("#tableDiv").show();
     }
+
 
     addNewBtnAction() {
         if ($(".addNewBtn").html() == '<i class="fa fa-caret-left"></i>&nbsp; Go Back') {
@@ -79,6 +80,7 @@ export class ModuleMasterComponent implements OnInit{
         this.dashboardRouter.navigateByUrl("/dashboard/dashboard1");
     }
 
+
     clearFormBtnAction() {
         alert("cleared...");
     }
@@ -106,6 +108,6 @@ export class ModuleMasterComponent implements OnInit{
     }
 
     closeFromBtnAction() {
-        alert("closed...");
+
     }
 }

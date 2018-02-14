@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserMasterComponent } from "./usermaster/usermaster.component";
 import { ModuleMasterComponent } from "./modulemaster/modulemaster.component";
 import { MenuMasterComponent } from "./menumaster/menumaster.component";
+import { UserRightsMasterComponent } from "./userRightsMaster/userRightsMaster.component";
 
 const routes: Routes = [
   {
@@ -28,6 +29,13 @@ const routes: Routes = [
         component: MenuMasterComponent,
         data: {
           title: 'Menu Master'
+        }
+      },
+      {
+        path: 'userRightsMaster',
+        component: UserRightsMasterComponent,
+        data: {
+          title: 'User Rights Master'
         }
       }
     ]

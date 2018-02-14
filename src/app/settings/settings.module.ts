@@ -10,6 +10,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { UserMasterComponent } from "./usermaster/usermaster.component";
 import { ModuleMasterComponent } from "./modulemaster/modulemaster.component";
 import { MenuMasterComponent } from "./menumaster/menumaster.component";
+import { UserRightsMasterComponent } from "./userRightsMaster/userRightsMaster.component";
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { MenuMasterComponent } from "./menumaster/menumaster.component";
     declarations: [
         UserMasterComponent,
         ModuleMasterComponent,
-        MenuMasterComponent
+        MenuMasterComponent,
+        UserRightsMasterComponent
     ],
     providers: [],
 })
