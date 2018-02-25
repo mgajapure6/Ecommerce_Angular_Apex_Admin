@@ -1,6 +1,5 @@
 export class WsReponse{
-    status : String;
+    statusMsg : String;
 	statusCode : Number;
-	msg : String;
-	object : Object;
+	objectData : Object;
 }

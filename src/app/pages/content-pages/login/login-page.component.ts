@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {RestWebServiceUrlService} from '../../../rest-web-service-url.service';
 import {WsReponse} from '../../../shared/models/wsResponse';
-import {UserData} from '../../../shared/models/userData';
+import {UserMaster} from '../../../shared/models/userData';
 
 @Component({
     selector: 'app-login-page',
@@ -16,7 +16,7 @@ import {UserData} from '../../../shared/models/userData';
 export class LoginPageComponent implements OnInit {
 
 
-    public sessionUserData:UserData;
+    public sessionUserData:UserMaster;
 
     //@ViewChild('loginForm') loginForm: NgForm;
 
@@ -27,7 +27,7 @@ export class LoginPageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.sessionUserData = JSON.parse(localStorage.getItem("userData")) as UserData;
+        this.sessionUserData = JSON.parse(localStorage.getItem("userData")) as UserMaster;
         if(this.sessionUserData!=null){
             this.router.navigateByUrl('/dashboard/dashboard1');
         }
@@ -44,10 +44,11 @@ export class LoginPageComponent implements OnInit {
             data => {
                 console.log("status code :"+data.statusCode);
                 if(data.statusCode == 200){
-                    let userData = data.object as UserData;
-                    console.log("User Email :"+userData.userEmail);
+                    let userData = data.objectData as UserMaster;
+                    console.log("User Email :"+userData.email1);
                     localStorage.setItem("userData", JSON.stringify(userData));
-                    $('#msgDiv').attr('style','color:white;').html("Success");
+                    $('#msgDiv').attr('style','color:white;').html("Redirecting To Dashboard...");
+                    this.router.navigateByUrl('/dashboard/dashboard1');
                 }else{
                     $('#msgDiv').attr('style','color:Red;').html("Invalid Username Or Password");
                 }

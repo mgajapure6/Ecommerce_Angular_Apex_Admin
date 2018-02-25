@@ -4,14 +4,14 @@ import * as web_url from './appVar';
 @Injectable()
 export class RestWebServiceUrlService {
 
-  public mainUrl :string = 'http://localhost:7070/ecom_api/';
+  public mainUrl :string = 'http://localhost:7070/ecom_api/api';
 
   constructor() {
 
    }
 
   getLoginUrl() : string{
-    return this.mainUrl+'/user_api/userLogin';
+    return this.mainUrl+'/user/userLogin';
   }
 
 }
