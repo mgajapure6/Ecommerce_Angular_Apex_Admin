@@ -26,7 +26,7 @@ export class MenuMasterComponent implements OnInit {
 
     closeResult: string;
 
-    constructor(private dashboardRouter: Router) {
+    constructor(private router: Router) {
         this.rows = data;
         setTimeout(() => { this.loadingIndicator = false; }, 1500);
     }
@@ -77,7 +77,7 @@ export class MenuMasterComponent implements OnInit {
         $('.navigation').find('li:eq(0)').find('ul').find('li').each(function () {
             $(this).addClass('is-shown');
         });
-        this.dashboardRouter.navigateByUrl("/dashboard/dashboard1");
+        this.router.navigateByUrl("/dashboard/dashboard1");
     }
 
 

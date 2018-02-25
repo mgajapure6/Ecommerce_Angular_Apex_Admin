@@ -1,12 +1,14 @@
 
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from "./shared/shared.module";
 import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { AgmCoreModule } from '@agm/core';
+import { StorageServiceModule} from 'angular-webstorage-service';
 
 import { AppComponent } from './app.component';
 import { ContentLayoutComponent } from "./layouts/content/content-layout.component";
@@ -22,16 +24,19 @@ import * as $ from 'jquery';
         AppComponent,
         FullLayoutComponent,
         ContentLayoutComponent,
+        
     ],
     imports: [
         BrowserAnimationsModule,
         AppRoutingModule,
         SharedModule,
+        StorageServiceModule,
         ToastModule.forRoot(),
         NgbModule.forRoot(),
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyBr5_picK8YJK7fFR2CPzTVMj6GG1TtRGo'
-        })
+        }),
+        HttpClientModule,
     ],
     providers: [
         //Toastr providers
