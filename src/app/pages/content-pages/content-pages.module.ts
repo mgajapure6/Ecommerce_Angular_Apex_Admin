@@ -12,12 +12,14 @@ import { LoginPageComponent } from "./login/login-page.component";
 import { MaintenancePageComponent } from "./maintenance/maintenance-page.component";
 import { RegisterPageComponent } from "./register/register-page.component";
 
+import {RestWebServiceUrlService} from '../../rest-web-service-url.service';
+
 
 @NgModule({
     imports: [
         CommonModule,
         ContentPagesRoutingModule,
-        FormsModule        
+        FormsModule,    
     ],
     declarations: [
         ComingSoonPageComponent,
@@ -27,6 +29,9 @@ import { RegisterPageComponent } from "./register/register-page.component";
         LoginPageComponent,
         MaintenancePageComponent,
         RegisterPageComponent
+    ],
+    providers:[
+        RestWebServiceUrlService
     ]
 })
 export class ContentPagesModule { }

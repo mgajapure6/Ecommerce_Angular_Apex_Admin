@@ -7,12 +7,12 @@ declare var require: any;
 const data: any = require('../../shared/data/company.json');
 
 @Component({
-    selector: 'app-usermaster',
-    templateUrl: './usermaster.component.html',
-    styleUrls: ['./usermaster.component.scss'],
+    selector: 'app-userRightsMaster',
+    templateUrl: './userRightsMaster.component.html',
+    styleUrls: ['./userRightsMaster.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-export class UserMasterComponent implements OnInit  {
+export class UserRightsMasterComponent implements OnInit  {
     rows = [];
     loadingIndicator: boolean = true;
     reorderable: boolean = true;
@@ -26,7 +26,7 @@ export class UserMasterComponent implements OnInit  {
 
     closeResult: string;
 
-    constructor(private router: Router) {
+    constructor(private dashboardRouter: Router) {
         this.rows = data;
         setTimeout(() => { this.loadingIndicator = false; }, 1500);
     }
@@ -77,7 +77,7 @@ export class UserMasterComponent implements OnInit  {
         $('.navigation').find('li:eq(0)').find('ul').find('li').each(function () {
             $(this).addClass('is-shown');
         });
-        this.router.navigateByUrl("/dashboard/dashboard1");
+        this.dashboardRouter.navigateByUrl("/dashboard/dashboard1");
     }
 
 

@@ -1,23 +1,68 @@
-import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, ViewChild, Inject, OnInit } from '@angular/core';
+import { NgForm,NgModel } from '@angular/forms';
 import { Router, ActivatedRoute } from "@angular/router";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {RestWebServiceUrlService} from '../../../rest-web-service-url.service';
+import {WsReponse} from '../../../shared/models/wsResponse';
+import {UserMaster} from '../../../shared/models/userData';
 
 @Component({
     selector: 'app-login-page',
     templateUrl: './login-page.component.html',
-    styleUrls: ['./login-page.component.scss']
+    styleUrls: ['./login-page.component.scss'],
+
 })
 
-export class LoginPageComponent {
+export class LoginPageComponent implements OnInit {
 
-    @ViewChild('f') loginForm: NgForm;
 
-    constructor(private router: Router,
-        private route: ActivatedRoute) { }
+    public sessionUserData:UserMaster;
+
+    //@ViewChild('loginForm') loginForm: NgForm;
+
+    constructor(private router : Router,
+        private route : ActivatedRoute,
+        private restWebServiceUrlService : RestWebServiceUrlService,
+        private httpClient: HttpClient,
+    ) {}
+
+    ngOnInit() {
+        this.sessionUserData = JSON.parse(localStorage.getItem("userData")) as UserMaster;
+        if(this.sessionUserData!=null){
+            this.router.navigateByUrl('/dashboard/dashboard1');
+        }
+    }
 
     // On submit button click    
-    onSubmit() {
-        this.loginForm.reset();
+    onSubmit(loginForm: NgForm) {
+        console.log(loginForm.value);
+        console.log("login ok");
+        let url = this.restWebServiceUrlService.getLoginUrl();//'http://192.168.43.188:7070/ecom_api/user_api/userLogin';
+        let httpHeader = new HttpHeaders();
+        httpHeader.append("Content-Type","application/json");
+        this.httpClient.post<WsReponse>(url,loginForm.value,{headers : httpHeader}).subscribe(
+            data => {
+                console.log("status code :"+data.statusCode);
+                if(data.statusCode == 200){
+                    let userData = data.objectData as UserMaster;
+                    console.log("User Email :"+userData.email1);
+                    localStorage.setItem("userData", JSON.stringify(userData));
+                    $('#msgDiv').attr('style','color:white;').html("Redirecting To Dashboard...");
+                    this.router.navigateByUrl('/dashboard/dashboard1');
+                }else{
+                    $('#msgDiv').attr('style','color:Red;').html("Invalid Username Or Password");
+                }
+                $('#msgDiv').fadeOut('slow').delay(3000).hide(4000);
+                //setTimeout($('#msgDiv').hide,3000);
+                //return true;
+            },
+            error => {
+                console.log(error);
+                console.error("Error getting userData!");
+                //return false;
+            }
+        );
+        loginForm.reset();
     }
     // On Forgot password link click
     onForgotPassword() {
@@ -27,4 +72,5 @@ export class LoginPageComponent {
     onRegister() {
         this.router.navigate(['register'], { relativeTo: this.route.parent });
     }
+
 }
