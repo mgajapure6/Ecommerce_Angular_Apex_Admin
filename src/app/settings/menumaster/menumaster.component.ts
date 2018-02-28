@@ -1,7 +1,8 @@
 import { Component, ViewEncapsulation, Input, OnInit } from '@angular/core';
-import { Routes, Router } from '@angular/router';
 import swal from 'sweetalert2';
 import { Route } from '@angular/compiler/src/core';
+
+import {AppUtil} from '../../shared/utility/AppUtil';
 
 declare var require: any;
 const data: any = require('../../shared/data/company.json');
@@ -11,6 +12,7 @@ const data: any = require('../../shared/data/company.json');
     templateUrl: './menumaster.component.html',
     styleUrls: ['./menumaster.component.scss'],
     encapsulation: ViewEncapsulation.None,
+    providers:[AppUtil]
 })
 export class MenuMasterComponent implements OnInit {
     rows = [];
@@ -25,8 +27,7 @@ export class MenuMasterComponent implements OnInit {
     ];
 
     closeResult: string;
-
-    constructor(private dashboardRouter: Router) {
+    constructor(private appUtil : AppUtil) {
         this.rows = data;
         setTimeout(() => { this.loadingIndicator = false; }, 1500);
     }
@@ -53,33 +54,8 @@ export class MenuMasterComponent implements OnInit {
     }
 
     closePageBtnAction() {
-
-        if ($('.wrapper').hasClass('nav-collapsed')) {
-            $('.navigation').find('li').each(function () {
-                $(this).removeClass('nav-collapsed-open');
-                $(this).find('ul').find('li').each(function () {
-                    $(this).removeClass('is-shown');
-                    $(this).removeClass('active');
-                });
-            });
-            $('.navigation').find('li:eq(0)').addClass('nav-collapsed-open');
-        } else {
-            $('.navigation').find('li').each(function () {
-                $(this).removeClass('open');
-                $(this).find('ul').find('li').each(function () {
-                    $(this).removeClass('is-shown');
-                    $(this).removeClass('active');
-                });
-            });
-            $('.navigation').find('li:eq(0)').addClass('open');
-        }
-        $('.navigation').find('li:eq(0)').find('ul').find('li:eq(0)').addClass('active').addClass('is-shown');
-        $('.navigation').find('li:eq(0)').find('ul').find('li').each(function () {
-            $(this).addClass('is-shown');
-        });
-        this.dashboardRouter.navigateByUrl("/dashboard/dashboard1");
+        this.appUtil.closeComponentAndOpenDashboard();
     }
-
 
     clearFormBtnAction() {
         alert("cleared...");
